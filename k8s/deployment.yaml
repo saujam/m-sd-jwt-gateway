@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: m-sd-jwt-gateway
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: m-sd-jwt-gateway
+  template:
+    metadata:
+      labels:
+        app: m-sd-jwt-gateway
+    spec:
+      containers:
+        - name: gateway
+          image: saujam/m-sd-jwt-gateway:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: secret

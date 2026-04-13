@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: m-sd-jwt-gateway
+spec:
+  selector:
+    app: m-sd-jwt-gateway
+  ports:
+    - port: 8080
+      targetPort: 8080
+  type: ClusterIP
